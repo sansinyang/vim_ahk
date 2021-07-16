@@ -19,11 +19,11 @@ $::Vim.Move.Move("$")
 ^::Vim.Move.Move("^")
 ; Words
 w::Vim.Move.Repeat("w")
-+w::Vim.Move.Repeat("w") ; +w/e/+e are same as w
-e::Vim.Move.Repeat("w")
-+e::Vim.Move.Repeat("w")
+;+w::Vim.Move.Repeat("w") ; +w/e/+e are same as w
+;e::Vim.Move.Repeat("w")
+;+e::Vim.Move.Repeat("w")
 b::Vim.Move.Repeat("b")
-+b::Vim.Move.Repeat("b") ; +b = b
+;+b::Vim.Move.Repeat("b") ; +b = b
 ; Page Up/Down
 ^u::Vim.Move.Repeat("^u")
 ^d::Vim.Move.Repeat("^d")

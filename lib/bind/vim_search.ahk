@@ -15,5 +15,5 @@ Return
   Vim.State.SetMode("Insert")
 Return
 
-n::Send, {F3}
-+n::Send, +{F3}
+;n::Send, {F3}
+;+n::Send, +{F3}
