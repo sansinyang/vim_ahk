@@ -69,6 +69,7 @@ class VimAhk{
     ; Others start right/left (by cursor) point of the selection
     GroupAdd, VimCursorSameAfterSelect, ahk_exe notepad.exe ; NotePad
     GroupAdd, VimCursorSameAfterSelect, ahk_exe explorer.exe ; Explorer
+    GroupAdd, VimSm, ahk_exe sm18.exe
 
     ; Q-Dir
     GroupAdd, VimQdir, ahk_exe Q-Dir_x64.exe ; q-dir

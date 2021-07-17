@@ -74,3 +74,27 @@ Return
   Vim.State.SetMode("Vim_Normal")
 Return
 ; }}} Vim visual mode
+#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and Vim.State.StrIsInCurrentVimMode( "Visual")
+e::
+Send, !{x}
+Vim.State.SetMode("Vim_Normal")
+;, 0, 0, 0)
+return
+
+r::
+Send, !{x}
+Sleep, 1000
+Send, !{Left}
+Sleep, 500
+Click 33, 160
+Vim.State.SetMode("Vim_Normal")
+;I can set ESC for delete
+;, 0, 0, 0)
+return
+
+
+n::
+Send, !{z}
+Vim.State.SetMode("Vim_Normal", 0, 0, 0)
+Return
+

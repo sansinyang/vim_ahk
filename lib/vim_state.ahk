@@ -9,9 +9,10 @@
     this.PossibleVimModes := ["Vim_Normal", "Insert", "Replace", "Vim_ydc_y"
     , "Vim_ydc_c", "Vim_ydc_d", "Vim_VisualLine", "Vim_VisualFirst"
     , "Vim_VisualChar", "Command", "Command_w", "Command_q", "Z", ""
-    , "r_once", "r_repeat", "Vim_VisualLineFirst"]
+    , "r_once", "r_repeat", "Vim_VisualLineFirst","Sm"]
 
-    this.Mode := "Insert"
+    this.Mode := "Vim_Normal"
+	;Insert"
     this.g := 0
     this.n := 0
     this.LineCopy := 0
@@ -20,6 +21,7 @@
     this.PrevControl := ""
 
     this.StatusCheckObj := ObjBindMethod(this, "StatusCheck")
+
   }
 
   CheckMode(verbose=1, Mode="", g=0, n=0, LineCopy=-1, force=0){

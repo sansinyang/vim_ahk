@@ -4,6 +4,7 @@
   Vim.Setting.ShowGui()
 Return
 
+^!r::Reload
 ; Check Mode
 #If Vim.IsVimGroup()
 ^!+c::

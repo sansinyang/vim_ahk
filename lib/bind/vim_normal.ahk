@@ -35,10 +35,64 @@ Return
 Return
 
 #If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Vim_Normal"))
-Space::Send, {Right}
+;Space::Send, {Right}
 
 ; period
 .::Send, +^{Right}{BS}^v
+
+#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and ((Vim.State.Mode == "Sm") or(Vim.State.Mode == "Vim_Normal"))
+q::
+Send, ^{Up}
+Sleep, 500
+Click 33, 160
+Vim.State.SetMode("Vim_Normal")
+Return
+
+!q::
+Send, !{PgUp}
+Vim.State.SetMode("Vim_Normal")
+Return
+
+z::
+Send,!{Right}
+Sleep, 500
+Click 33, 160
+Vim.State.SetMode("Vim_Normal")
+Return
+
+e::
+Send,!{Left}
+Sleep, 500
+Click 33, 160
+Vim.State.SetMode("Vim_Normal")
+;Sleep, 200 ; wait for popup
+;Send, {Esc}
+;Vim.State.SetMode("Sm")
+Return
+
+!e::
+Send, !{PgDn}
+Sleep, 500
+Click 33, 160
+Vim.State.SetMode("Vim_Normal")
+Return
+
+t::
+Send, ^d
+Sleep, 500 ; wait for popup
+IfWinActive, ahk_class TMsgDialog
+{
+Send, {Enter}
+}
+Sleep, 200 ; wait for popup
+IfWinActive, ahk_class TMsgDialog
+{
+Send, {Enter}
+return
+}
+Sleep, 200 ; wait for popup
+;Send, {Esc}
+return
 
 ; Q-dir
 #If Vim.IsVimGroup() and WinActive("ahk_group VimQdir") and (Vim.State.Mode == "Vim_Normal")
