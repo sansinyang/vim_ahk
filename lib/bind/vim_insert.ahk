@@ -12,3 +12,4 @@
 !l::Vim.Move.Repeat("w")
 !h::Vim.Move.Repeat("b")
 ^w::Send, ^{BS}
+^d::Send, {Del}

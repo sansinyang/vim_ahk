@@ -2,28 +2,41 @@
 ^[::Vim.State.HandleCtrlBracket()
 Esc::Vim.State.HandleEsc()
 
-Vim.State.SetMode("Vim_Normal")
-
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Vim_Normal")
 f::
 ;ifWinActive, ahk_class TElWind
+;ControlFocus, TBitBtn3
 Send,{Esc}
 Vim.State.SetMode("Sm")
 Return
 
+;#If Vim.IsVimGroup() and WinActive("ahk_group VimSm")
+;ControlGetFocus, currentFocus, ahk_class TElWind, , , 
+;if (currentFocus == "Internet Explorer_Server1")
+;;if ((currentFocus == "Internet Explorer_Server2") || (currentFocus == "Internet Explorer_Server1"))
+;{
+;Send, {Esc}
+;}
 
-#If Vim.IsVimGroup() and Vim.State.IsCurrentVimMode( "Sm")
+
+#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and Vim.State.IsCurrentVimMode( "Sm")
 {
 r::
-;WinActivate, ahk_class TElWind
-Click 33, 160
+WinActivate, ahk_class TElWind
+Send,{Tab}
+;ControlFocus, Internet Explorer_Server1
+;Click 33, 160
+;Click , Internet Explorer_Server1
 Vim.State.SetMode("Vim_Normal")
 Return
+
 y::
+;Send ,{Esc}
 Send , {Del}
 Sleep, 500 ; wait for popup
 IfWinActive, ahk_class TMsgDialog
 Send, {Enter}
+Sleep, 500 ; wait for popup
 Vim.State.SetMode("Vim_Normal")
 Return
 
@@ -35,6 +48,55 @@ Return
 ;If Vim.State.IsCurrentVimMode( "Insert")
 ;Vim.State.SetMode("Vim_Normal")
 ;Return
+h::
+    Send, !p
+	Sleep, 100
+    Send,  70
+	Sleep, 100
+    Send, {Enter}
+return
+n::
+    Send, !p
+	Sleep, 100
+    Send,  60
+	Sleep, 100
+    Send, {Enter}
+return
+b::
+    Send, !p
+	Sleep, 100
+    Send,  10
+	Sleep, 100
+    Send, {Enter}
+return
+v::
+    Send, !p
+	Sleep, 100
+    Send,  20
+	Sleep, 100
+    Send, {Enter}
+return
+c::
+    Send, !p
+	Sleep, 100
+    Send,  30
+	Sleep, 100
+    Send, {Enter}
+return
+x::
+    Send, !p
+	Sleep, 100
+    Send,  40
+	Sleep, 100
+    Send, {Enter}
+return
+w::
+    Send, !p
+	Sleep, 100
+    Send,  50
+	Sleep, 100
+    Send, {Enter}
+return
 
 g::
     Send, {1}

@@ -77,6 +77,7 @@ Return
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and Vim.State.StrIsInCurrentVimMode( "Visual")
 e::
 Send, !{x}
+Sleep, 500
 Vim.State.SetMode("Vim_Normal")
 ;, 0, 0, 0)
 return
@@ -86,8 +87,9 @@ Send, !{x}
 Sleep, 1000
 Send, !{Left}
 Sleep, 500
-Click 33, 160
+Send, {Tab}
 Vim.State.SetMode("Vim_Normal")
+;Click 33, 160
 ;I can set ESC for delete
 ;, 0, 0, 0)
 return
@@ -95,6 +97,7 @@ return
 
 n::
 Send, !{z}
-Vim.State.SetMode("Vim_Normal", 0, 0, 0)
+Vim.State.SetMode("Vim_Normal")
+;Vim.State.SetMode("Vim_Normal", 0, 0, 0)
 Return
 
