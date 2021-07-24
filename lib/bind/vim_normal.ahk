@@ -34,15 +34,15 @@ Return
   Vim.State.SetMode("Vim_Normal")
 Return
 
-#If Vim.IsVimGroup()and WinActive("ahk_group VimSm")
-; and (Vim.State.IsCurrentVimMode("Vim_Normal"))
-s::
-Vim.State.SetMode("Vim_Normal")
-ControlClick, TBitBtn3
-Sleep, 1000 ; wait for popup
-VIm.State.SetNormal()
-;Send, {Tab}
-return
+;#If Vim.IsVimGroup()and WinActive("ahk_group VimSm")
+;; and (Vim.State.IsCurrentVimMode("Vim_Normal"))
+;s::
+;Vim.State.SetMode("Vim_Normal")
+;ControlClick, TBitBtn3
+;Sleep, 1000 ; wait for popup
+;VIm.State.SetNormal()
+;;Send, {Tab}
+;return
 
 ; period
 .::Send, +^{Right}{BS}^v
@@ -101,6 +101,7 @@ Return
 q::
 Send, ^{Up}
 Sleep, 500
+Send, {Tab}
 Vim.State.SetMode("Vim_Normal")
 Return
 
@@ -109,7 +110,7 @@ Send, !{PgUp}
 Vim.State.SetMode("Vim_Normal")
 Return
 
-z::
+m::
 Send,!{Right}
 Sleep, 500
 Click 33, 160
@@ -119,7 +120,8 @@ Return
 e::
 Send,!{Left}
 Sleep, 500
-Click 33, 160
+Send, {Tab}
+;Click 33, 160
 Vim.State.SetMode("Vim_Normal")
 ;Sleep, 200 ; wait for popup
 ;Send, {Esc}
