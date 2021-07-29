@@ -1,9 +1,20 @@
 ﻿#If Vim.IsVimGroup()
 ^[::Vim.State.HandleCtrlBracket()
-Esc::Vim.State.HandleEsc()
+Esc::
+Vim.State.HandleEsc()
+IfWinActive, ahk_class TElWind
+Vim.State.SetMode("Sm")
+
+
+;#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") 
+;Esc::
+;Vim.State.HandleEsc()
+;Vim.State.SetMode("Sm")
+;return
+
 
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Vim_Normal")
-f::
+z::
 ;ifWinActive, ahk_class TElWind
 ;ControlFocus, TBitBtn3
 Send,{Esc}

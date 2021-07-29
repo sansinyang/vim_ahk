@@ -75,7 +75,7 @@ return
 t::
 Send, ^d
 Sleep, 500 ; wait for popup
-IfWinActive, ahk_class TMsgDialog
+ifwinactive, ahk_class TMsgDialog
 {
 Send, {Enter}
 }
@@ -84,7 +84,7 @@ IfWinActive, ahk_class TMsgDialog
 {
 Send, {Enter}
 }
-Sleep, 500
+Sleep, 200
 Send, {Tab}
 Vim.State.SetMode("Vim_Normal")
 ;ControlFocus, TBitBtn3
