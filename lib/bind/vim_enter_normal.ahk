@@ -1,12 +1,13 @@
 ﻿#If Vim.IsVimGroup()
 ^[::Vim.State.HandleCtrlBracket()
+
 Esc::
 Vim.State.HandleEsc()
 IfWinActive, ahk_class TElWind
 Vim.State.SetMode("Sm")
 
 
-;#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") 
+;#If im.IsVimGroup() and WinActive("ahk_group VimSm") 
 ;Esc::
 ;Vim.State.HandleEsc()
 ;Vim.State.SetMode("Sm")
@@ -32,6 +33,34 @@ Return
 
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and Vim.State.IsCurrentVimMode( "Sm")
 {
+m::
+Send, ^{Enter}
+Sleep, 200
+Vim.State.SetMode("Insert")
+Send, concept: m
+Sleep, 200
+Send, {Enter}
+Vim.State.SetMode("Sm")
+return
+
+k::
+Send, ^{Enter}
+Sleep, 200
+Vim.State.SetMode("Insert")
+Send, l
+Sleep, 200
+Send, {Enter}
+Vim.State.SetMode("Sm")
+return
+j::
+Send, ^{Enter}
+Sleep, 200
+Vim.State.SetMode("Insert")
+Send, concept: l
+Sleep, 200
+Send, {Enter}
+Vim.State.SetMode("Sm")
+return
 r::
 WinActivate, ahk_class TElWind
 Send,{Tab}
@@ -48,7 +77,7 @@ Sleep, 500 ; wait for popup
 IfWinActive, ahk_class TMsgDialog
 Send, {Enter}
 Sleep, 500 ; wait for popup
-Vim.State.SetMode("Vim_Normal")
+;Vim.State.SetMode("Vim_Normal")
 Return
 
 ;Space::

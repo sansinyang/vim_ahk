@@ -47,6 +47,7 @@ Return
 ; period
 .::Send, +^{Right}{BS}^v
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Sm")
+i::Vim.State.SetMode("Insert")
 t::
 Send, ^d
 Sleep, 500 ; wait for popup
@@ -85,11 +86,11 @@ IfWinActive, ahk_class TMsgDialog
 Send, {Enter}
 }
 Sleep, 200
-Send, {Tab}
-Vim.State.SetMode("Vim_Normal")
+;Send, {Tab}
+;Vim.State.SetMode("Vim_Normal")
 ;ControlFocus, TBitBtn3
-;Vim.State.SetMode("Sm")
-;Send, {Esc}
+Send, {Esc}
+Vim.State.SetMode("Sm")
 return
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and ((Vim.State.Mode == "Sm") or(Vim.State.Mode == "Vim_Normal"))
 ^g::
@@ -102,6 +103,7 @@ q::
 Send, ^{Up}
 Sleep, 500
 Send, {Tab}
+Sleep, 200
 Vim.State.SetMode("Vim_Normal")
 Return
 
@@ -113,7 +115,7 @@ Return
 m::
 Send,!{Right}
 Sleep, 500
-Click 33, 160
+Send, {Tab}
 Vim.State.SetMode("Vim_Normal")
 Return
 

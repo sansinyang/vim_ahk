@@ -101,3 +101,22 @@ Vim.State.SetMode("Vim_Normal")
 ;Vim.State.SetMode("Vim_Normal", 0, 0, 0)
 Return
 
+f::
+Send, ^{Enter}
+Sleep, 100
+Send, Remove formatting: S
+Sleep, 100
+Send, {Enter}
+Vim.State.SetMode("Vim_Normal")
+return
+
+s::
+;Vim.State.SetMode("Vim_Normal", 0, 0, 0)
+Send, <span class=""Cloze"">[...]</span>
+Send +^{Left 8}
+Sleep, 30
+Send ^+{1}
+Sleep, 30
+;Send, {Tab}
+Vim.State.SetMode("Vim_Normal")
+return
