@@ -44,10 +44,10 @@ Return
 ;;Send, {Tab}
 ;return
 
-; period
+;Sm mode
 .::Send, +^{Right}{BS}^v
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Sm")
-i::Vim.State.SetMode("Insert")
+;dismiss
 t::
 Send, ^d
 Sleep, 500 ; wait for popup
@@ -67,16 +67,21 @@ return
 return
 
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Vim_Normal")
-s::
+;force next and return
+f::
 ControlClick, TBitBtn3
 Sleep, 500 ; wait for popup
 VIm.State.SetNormal()
 ;Send, {Tab}
 return
+
+;Dissmiss
 t::
 Send, ^d
 Sleep, 500 ; wait for popup
 ifwinactive, ahk_class TMsgDialog
+
+
 {
 Send, {Enter}
 }
@@ -92,13 +97,16 @@ Sleep, 200
 Send, {Esc}
 Vim.State.SetMode("Sm")
 return
+
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and ((Vim.State.Mode == "Sm") or(Vim.State.Mode == "Vim_Normal"))
+;Copy new 
 ^g::
 send ,^n
 Click 33, 160
 Vim.State.SetMode("Vim_Normal")
 Return
 
+;go to the parent
 q::
 Send, ^{Up}
 Sleep, 500
@@ -107,18 +115,21 @@ Sleep, 200
 Vim.State.SetMode("Vim_Normal")
 Return
 
+;go to previous element
 !q::
 Send, !{PgUp}
 Vim.State.SetMode("Vim_Normal")
 Return
 
-m::
-Send,!{Right}
+;go to next element
+!e::
+Send, !{PgDn}
 Sleep, 500
-Send, {Tab}
+Click 33, 160
 Vim.State.SetMode("Vim_Normal")
 Return
 
+;go to previous visited element
 e::
 Send,!{Left}
 Sleep, 500
@@ -130,12 +141,15 @@ Vim.State.SetMode("Vim_Normal")
 ;Vim.State.SetMode("Sm")
 Return
 
-!e::
-Send, !{PgDn}
+;backtrack revist element
+m::
+Send,!{Right}
 Sleep, 500
-Click 33, 160
+Send, {Tab}
 Vim.State.SetMode("Vim_Normal")
 Return
+
+
 
 
 ; Q-dir

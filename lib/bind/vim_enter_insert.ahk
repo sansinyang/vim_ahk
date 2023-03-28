@@ -1,4 +1,5 @@
-﻿#If Vim.IsVimGroup() && (Vim.State.IsCurrentVimMode("Vim_Normal"))
+﻿;Normal to Insert
+#If Vim.IsVimGroup() && (Vim.State.IsCurrentVimMode("Vim_Normal"))
 i::Vim.State.SetMode("Insert")
 
 +i::
@@ -6,6 +7,10 @@ i::Vim.State.SetMode("Insert")
   Vim.State.SetMode("Insert")
 Return
 
+s::
+  Send, {Delete}
+  Vim.State.SetMode("Insert")
+Return
 a::
   Send, {Right}
   Vim.State.SetMode("Insert")

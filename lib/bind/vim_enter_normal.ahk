@@ -15,6 +15,7 @@ Vim.State.SetMode("Sm")
 
 
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Vim_Normal")
+;back Sm
 z::
 ;ifWinActive, ahk_class TElWind
 ;ControlFocus, TBitBtn3
@@ -30,9 +31,10 @@ Return
 ;Send, {Esc}
 ;}
 
-
+;Sm state
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and Vim.State.IsCurrentVimMode( "Sm")
 {
+;concept make
 m::
 Send, ^{Enter}
 Sleep, 200
@@ -43,6 +45,7 @@ Send, {Enter}
 Vim.State.SetMode("Sm")
 return
 
+;link elements between
 k::
 Send, ^{Enter}
 Sleep, 200
@@ -52,6 +55,8 @@ Sleep, 200
 Send, {Enter}
 Vim.State.SetMode("Sm")
 return
+
+;link element to concept
 j::
 Send, ^{Enter}
 Sleep, 200
@@ -61,6 +66,7 @@ Sleep, 200
 Send, {Enter}
 Vim.State.SetMode("Sm")
 return
+;sm2normal
 r::
 WinActivate, ahk_class TElWind
 Send,{Tab}
@@ -70,8 +76,8 @@ Send,{Tab}
 Vim.State.SetMode("Vim_Normal")
 Return
 
+;delete element
 y::
-;Send ,{Esc}
 Send , {Del}
 Sleep, 500 ; wait for popup
 IfWinActive, ahk_class TMsgDialog
@@ -88,6 +94,8 @@ Return
 ;If Vim.State.IsCurrentVimMode( "Insert")
 ;Vim.State.SetMode("Vim_Normal")
 ;Return
+
+;priority set in sm
 h::
     Send, !p
 	Sleep, 100
@@ -138,6 +146,7 @@ w::
     Send, {Enter}
 return
 
+;score in sm
 g::
     Send, {1}
     Sleep, 40

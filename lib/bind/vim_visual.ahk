@@ -62,6 +62,16 @@ c::
     Vim.State.SetMode("Insert", 0, 0, 0)
   }
 Return
+s::
+  Clipboard :=
+  Send, ^x
+  ClipWait, 1
+  if(Vim.State.StrIsInCurrentVimMode( "Line")){
+    Vim.State.SetMode("Insert", 0, 0, 1)
+  }else{
+    Vim.State.SetMode("Insert", 0, 0, 0)
+  }
+Return
 
 *::
   bak := ClipboardAll
@@ -75,6 +85,7 @@ Return
 Return
 ; }}} Vim visual mode
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and Vim.State.StrIsInCurrentVimMode( "Visual")
+;extract text
 e::
 Send, !{x}
 Sleep, 500
@@ -82,6 +93,7 @@ Vim.State.SetMode("Vim_Normal")
 ;, 0, 0, 0)
 return
 
+;extract and process
 r::
 Send, !{x}
 Sleep, 1000
@@ -94,13 +106,14 @@ Vim.State.SetMode("Vim_Normal")
 ;, 0, 0, 0)
 return
 
-
+;cloze
 n::
 Send, !{z}
 Vim.State.SetMode("Vim_Normal")
 ;Vim.State.SetMode("Vim_Normal", 0, 0, 0)
 Return
 
+;remove format
 f::
 Send, ^{Enter}
 Sleep, 100
@@ -110,7 +123,8 @@ Send, {Enter}
 Vim.State.SetMode("Vim_Normal")
 return
 
-s::
+;set Cloze 
+a::
 ;Vim.State.SetMode("Vim_Normal", 0, 0, 0)
 Send, <span class=""Cloze"">[...]</span>
 Send +^{Left 8}
