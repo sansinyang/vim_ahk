@@ -11,6 +11,7 @@
 #Include %A_LineFile%\..\bind\vim_command.ahk
 #Include %A_LineFile%\..\bind\vim_disable.ahk
 #Include %A_LineFile%\..\bind\vim_insert.ahk
+#Include %A_LineFile%\..\bind\vim_sm.ahk
 
 ; Reset the condition
 #If

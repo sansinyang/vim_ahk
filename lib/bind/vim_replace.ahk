@@ -1,6 +1,10 @@
 ﻿#If Vim.IsVimGroup() and (Vim.State.IsCurrentVimMode("Vim_Normal"))
-r::Send,{Tab}
+;r replace 
+;r::
+	;Send,{Tab}
 ;Vim.State.SetMode("r_once")
+	;Vim.State.SetMode("Vim_Normal")
+;Return
 
 +r::Vim.State.SetMode("r_repeat")
 

@@ -2,8 +2,8 @@
 ; Undo/Redo
 u::Send,^z
 ^r::Send,^y
-
-; Combine lines
+z::Send,^{F7}
+;Combine lines
 +j:: Send, {End}{Space}{Delete}
 
 ; Change case
@@ -44,60 +44,42 @@ Return
 ;;Send, {Tab}
 ;return
 
-;Sm mode
 .::Send, +^{Right}{BS}^v
-#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Sm")
-;dismiss
-t::
-Send, ^d
-Sleep, 500 ; wait for popup
-IfWinActive, ahk_class TMsgDialog
-{
-Send, {Enter}
-}
-Sleep, 200 ; wait for popup
-IfWinActive, ahk_class TMsgDialog
-{
-Send, {Enter}
-return
-}
-;ControlFocus, TBitBtn3
-;Vim.State.SetMode("Sm")
-;Send, {Esc}
-return
 
+;Sm->SM
+;#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Sm")
+;;dismiss
+;t::
+;Send, ^d
+;Sleep, 500 ; wait for popup
+;IfWinActive, ahk_class TMsgDialog
+;{
+;Send, {Enter}
+;}
+;Sleep, 200 ; wait for popup
+;IfWinActive, ahk_class TMsgDialog
+;{
+;Send, {Enter}
+;return
+;}
+;;ControlFocus, TBitBtn3
+;;Vim.State.SetMode("Sm")
+;;Send, {Esc}
+;return
+
+;Sm->Normal
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and (Vim.State.Mode == "Vim_Normal")
 ;force next and return
 f::
 ControlClick, TBitBtn3
 Sleep, 500 ; wait for popup
-VIm.State.SetNormal()
-;Send, {Tab}
-return
-
-;Dissmiss
-t::
-Send, ^d
-Sleep, 500 ; wait for popup
-ifwinactive, ahk_class TMsgDialog
-
-
-{
-Send, {Enter}
-}
-Sleep, 200 ; wait for popup
-IfWinActive, ahk_class TMsgDialog
-{
-Send, {Enter}
-}
-Sleep, 200
-;Send, {Tab}
-;Vim.State.SetMode("Vim_Normal")
-;ControlFocus, TBitBtn3
-Send, {Esc}
 Vim.State.SetMode("Sm")
+;VIm.State.SetSm()
+;Send, {Tab}
 return
 
+
+;Sm->Sm or Normal
 #If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and ((Vim.State.Mode == "Sm") or(Vim.State.Mode == "Vim_Normal"))
 ;Copy new 
 ^g::
@@ -142,12 +124,34 @@ Vim.State.SetMode("Vim_Normal")
 Return
 
 ;backtrack revist element
-m::
+z::
 Send,!{Right}
 Sleep, 500
 Send, {Tab}
 Vim.State.SetMode("Vim_Normal")
 Return
+
+;Dissmiss
+t::
+Send, ^d
+Sleep, 500 ; wait for popup
+ifwinactive, ahk_class TMsgDialog
+{
+Send, {Enter}
+}
+Sleep, 200 ; wait for popup
+IfWinActive, ahk_class TMsgDialog
+{
+Send, {Enter}
+}
+Sleep, 200
+;Send, {Tab}
+;Vim.State.SetMode("Vim_Normal")
+;ControlFocus, TBitBtn3
+Send, {Esc}
+Vim.State.SetMode("Sm")
+return
+;#If Vim.IsVimGroup() and WinActive("ahk_group VimSm") and ((Vim.State.Mode == "Vim_Normal"))
 
 
 
